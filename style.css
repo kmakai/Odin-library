@@ -22,7 +22,7 @@ body{
 }
 
 form{
-    position: relative;
+    position: absolute;
     background-color: powderblue;
     border: 2px solid plum;
     align-self: center;

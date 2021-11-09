@@ -1,6 +1,8 @@
 let myLibrary = [];
 const libCont = document.querySelector('.libContainer');
-
+const newBookButton = document.querySelector('.newBook');
+const sButton = document.createElement('button');
+sButton.textContent = "Submit Book";
 /* 
 new Book("The cat in the hat", "Dr.Suess",25,"read");
 new Book("Dune","Frank Herbert"," 688","read");
@@ -28,7 +30,6 @@ let book1 = new Book("The cat in the hat", "Dr.Suess", "25", "read");
 let book2 = new Book("Dune", "Frank Herbert", " 688", "read");
 let book3 = new Book("The hobbit", "J.R.R. Tolkien", " 295", "not yet read");
 let book4 = new Book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "not yet read");
-
 addBook(book1);
 addBook(book2);
 addBook(book3);
@@ -43,7 +44,7 @@ function displayBooks() {
         let status = document.createElement('p');
         title.textContent = `Title: ${myLibrary[i].title}`;
         author.textContent = `Author: ${myLibrary[i].author}`;
-        pages.textContent = `Pages: ${myLibrary[i].pages}`; 
+        pages.textContent = `Pages: ${myLibrary[i].pages}`;
         status.textContent = `Read?: ${myLibrary[i].readstatus}`;
         card.append(title);
         card.append(author);
@@ -54,27 +55,46 @@ function displayBooks() {
     }
 
 }
-
-function form(){
+let fTitle;
+let fAuthor;
+let fPages;
+let fRead;
+function form() {
     const nForm = document.createElement('form');
     const nTitleLabel = document.createElement('label');
     nTitleLabel.textContent = "Title:";
-    const fTitle = document.createElement('input');
+    fTitle = document.createElement('input');
     const nAuthorLabel = document.createElement('label');
     nAuthorLabel.textContent = "Author:";
-    const fAuthor = document.createElement('input');
+    fAuthor = document.createElement('input');
     const nPagesLabel = document.createElement('label');
     nPagesLabel.textContent = "Pages:"
-    const fPages = document.createElement('input');
+    fPages = document.createElement('input');
     const nReadLabel = document.createElement('label');
     nReadLabel.textContent = "Read or Not read?:";
-    const fRead = document.createElement('input');
+    fRead = document.createElement('input');
     nForm.append(nTitleLabel, fTitle);
     nForm.append(nAuthorLabel, fAuthor);
     nForm.append(nPagesLabel, fPages);
     nForm.append(nReadLabel, fRead);
-   // document.body.insertBefore(nForm,libCont);
+
+    const sButton = document.createElement('button');
+    sButton.textContent = "Submit Book";
+    nForm.append(sButton);
+
+    document.body.insertBefore(nForm, libCont);
 }
 
+
 displayBooks();
-form();
+
+newBookButton.addEventListener('click', function () {
+    form();
+
+})
+
+let nBook;
+sButton.addEventListener('click', function () {
+    nBook = new Book(fTitle.value, fAuthor.value, fPages.value, fRead.value);
+    addBook(nBook);
+})
