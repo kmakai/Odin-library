@@ -20,25 +20,39 @@ Book.prototype.info = function () {
     return this.title + ' by ' + this.author + "," + this.pages + " " + "pages, " + this.readstatus;
 }
 
-function addBook(book){
+function addBook(book) {
     myLibrary.push(book);
 }
 
-let book1 = new Book("The cat in the hat", "Dr.Suess","25","read");
-let book2 = new Book("Dune","Frank Herbert"," 688","read");
-let book3 = new Book("The hobbit","J.R.R. Tolkien"," 295","not yet read");
-let book4 = new Book("The Lord of The Rings","J.R.R. Tolkien", " 1216","not yet read");
+let book1 = new Book("The cat in the hat", "Dr.Suess", "25", "read");
+let book2 = new Book("Dune", "Frank Herbert", " 688", "read");
+let book3 = new Book("The hobbit", "J.R.R. Tolkien", " 295", "not yet read");
+let book4 = new Book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "not yet read");
 
 addBook(book1);
 addBook(book2);
 addBook(book3);
 addBook(book4);
-const tBody = document.querySelector(".tablebody");
-const tRow = document.createElement('tr');
-const tCol = document.createElement('td');
-tBody.append(tRow);
 
-for(i = 0; i < myLibrary.length; i++){
-    tCol.textContent = myLibrary[i];
-    tRow.append(tCol);
-  }
+function displayBooks() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        let card = document.createElement('div');
+        let title = document.createElement("p");
+        let author = document.createElement("p");
+        let pages = document.createElement('p');
+        let status = document.createElement('p');
+        title.textContent = `Title: ${myLibrary[i].title}`;
+        author.textContent = `Author: ${myLibrary[i].author}`;
+        pages.textContent = `Pages: ${myLibrary[i].pages}`; 
+        status.textContent = `Read?: ${myLibrary[i].readstatus}`;
+        card.append(title);
+        card.append(author);
+        card.append(pages);
+        card.append(status);
+        document.body.append(card);
+        card.className = 'bookCard';
+    }
+
+}
+
+displayBooks();

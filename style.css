@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.bookCard{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid blue;
+    max-width: 300px;
+    margin: 25px 0px;
+    padding: 10px 0px;
+}
