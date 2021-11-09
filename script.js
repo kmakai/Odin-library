@@ -1,5 +1,5 @@
 let myLibrary = [];
-
+const libCont = document.querySelector('.libContainer');
 
 /* 
 new Book("The cat in the hat", "Dr.Suess",25,"read");
@@ -49,10 +49,32 @@ function displayBooks() {
         card.append(author);
         card.append(pages);
         card.append(status);
-        document.body.append(card);
+        libCont.append(card);
         card.className = 'bookCard';
     }
 
 }
 
+function form(){
+    const nForm = document.createElement('form');
+    const nTitleLabel = document.createElement('label');
+    nTitleLabel.textContent = "Title:";
+    const fTitle = document.createElement('input');
+    const nAuthorLabel = document.createElement('label');
+    nAuthorLabel.textContent = "Author:";
+    const fAuthor = document.createElement('input');
+    const nPagesLabel = document.createElement('label');
+    nPagesLabel.textContent = "Pages:"
+    const fPages = document.createElement('input');
+    const nReadLabel = document.createElement('label');
+    nReadLabel.textContent = "Read or Not read?:";
+    const fRead = document.createElement('input');
+    nForm.append(nTitleLabel, fTitle);
+    nForm.append(nAuthorLabel, fAuthor);
+    nForm.append(nPagesLabel, fPages);
+    nForm.append(nReadLabel, fRead);
+   // document.body.insertBefore(nForm,libCont);
+}
+
 displayBooks();
+form();

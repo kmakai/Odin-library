@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+}
 
 .bookCard{
     display: flex;
@@ -12,6 +17,23 @@
     align-items: flex-start;
     border: 2px solid blue;
     max-width: 300px;
-    margin: 25px 0px;
-    padding: 10px 0px;
+    margin: 25px 25px;
+    padding: 10px 10px;
+}
+
+form{
+    position: relative;
+    background-color: powderblue;
+    border: 2px solid plum;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    margin: 25px;
+}
+
+label{
+    font-size: 1.5em;
+    font-weight: bold;
 }
