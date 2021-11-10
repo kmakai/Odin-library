@@ -1,16 +1,11 @@
+// Declaration of global variables. and the library array.
 let myLibrary = [];
 const libCont = document.querySelector('.libContainer');
 const newBookButton = document.querySelector('.newBook');
 const sButton = document.createElement('button');
 sButton.textContent = "Submit Book";
-/* 
-new Book("The cat in the hat", "Dr.Suess",25,"read");
-new Book("Dune","Frank Herbert"," 688","read");
-new Book("The hobbit","J.R.R. Tolkien"," 295","not yet read");
-new Book("The Lord of The Rings","J.R.R. Tolkien", " 1216","not yet read");
-*/
 
-
+// Constructor for the book Object.
 function Book(title, author, pages, readstatus) {
     this.title = title;
     this.author = author;
@@ -26,6 +21,7 @@ function addBook(book) {
     myLibrary.push(book);
 }
 
+//place holders for library;
 let book1 = new Book("The cat in the hat", "Dr.Suess", "25", "read");
 let book2 = new Book("Dune", "Frank Herbert", " 688", "read");
 let book3 = new Book("The hobbit", "J.R.R. Tolkien", " 295", "not yet read");
@@ -35,6 +31,7 @@ addBook(book2);
 addBook(book3);
 addBook(book4);
 
+//function to display books in library as cards.
 function displayBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
         let card = document.createElement('div');
@@ -58,10 +55,25 @@ function displayBooks() {
         card.className = 'bookCard';
         rmButton.addEventListener("click", function () {
             console.log(card.id);
-            myLibrary.splice(myLibrary[i],1);
+            myLibrary.splice(myLibrary[i], 1);
             libCont.innerHTML = '';
             displayBooks();
             console.log(myLibrary);
+        })
+        statButton = document.createElement("button");
+        statButton.type = "button";
+        statButton.textContent = "Change Status";
+        card.append(statButton);
+        statButton.addEventListener('click', function () {
+            if (myLibrary[i].readstatus === "read") {
+                myLibrary[i].readstatus = "not yet read"
+                libCont.innerHTML = '';
+                displayBooks();
+            } else {
+                myLibrary[i].readstatus = "read"
+                libCont.innerHTML = '';
+                displayBooks();
+            }
         })
     }
 
@@ -85,6 +97,7 @@ function form() {
     const nReadLabel = document.createElement('label');
     nReadLabel.textContent = "Read or Not read?:";
     fRead = document.createElement('input');
+    fRead.value = "Read";
     nForm.append(nTitleLabel, fTitle);
     nForm.append(nAuthorLabel, fAuthor);
     nForm.append(nPagesLabel, fPages);
