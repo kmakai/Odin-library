@@ -61,6 +61,7 @@ let fPages;
 let fRead;
 function form() {
     const nForm = document.createElement('form');
+    nForm.className = "form";
     const nTitleLabel = document.createElement('label');
     nTitleLabel.textContent = "Title:";
     fTitle = document.createElement('input');
@@ -79,22 +80,26 @@ function form() {
     nForm.append(nReadLabel, fRead);
 
     const sButton = document.createElement('button');
+    sButton.type = "button";
     sButton.textContent = "Submit Book";
     nForm.append(sButton);
 
     document.body.insertBefore(nForm, libCont);
+
+    sButton.addEventListener('click', function () {
+        const nbook = new Book(fTitle.value, fAuthor.value, fPages.value, fRead.value);
+        addBook(nbook);
+        libCont.innerHTML = '';
+        displayBooks();
+        document.querySelector("form").remove();
+    })
 }
 
 
 displayBooks();
-
 newBookButton.addEventListener('click', function () {
     form();
 
 })
 
-let nBook;
-sButton.addEventListener('click', function () {
-    nBook = new Book(fTitle.value, fAuthor.value, fPages.value, fRead.value);
-    addBook(nBook);
-})
+
