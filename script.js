@@ -56,8 +56,12 @@ function displayBooks() {
         card.append(rmButton);
         libCont.append(card);
         card.className = 'bookCard';
-        rmButton.addEventListener("click",function(){
-            console.log('clicked');
+        rmButton.addEventListener("click", function () {
+            console.log(card.id);
+            myLibrary.splice(myLibrary[i],1);
+            libCont.innerHTML = '';
+            displayBooks();
+            console.log(myLibrary);
         })
     }
 
