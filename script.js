@@ -42,6 +42,9 @@ function displayBooks() {
         let author = document.createElement("p");
         let pages = document.createElement('p');
         let status = document.createElement('p');
+        let rmButton = document.createElement('button');
+        rmButton.type = "button";
+        rmButton.textContent = "Remove";
         title.textContent = `Title: ${myLibrary[i].title}`;
         author.textContent = `Author: ${myLibrary[i].author}`;
         pages.textContent = `Pages: ${myLibrary[i].pages}`;
@@ -50,8 +53,12 @@ function displayBooks() {
         card.append(author);
         card.append(pages);
         card.append(status);
+        card.append(rmButton);
         libCont.append(card);
         card.className = 'bookCard';
+        rmButton.addEventListener("click",function(){
+            console.log('clicked');
+        })
     }
 
 }
