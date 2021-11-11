@@ -17,6 +17,7 @@ Book.prototype.info = function () {
     return this.title + ' by ' + this.author + "," + this.pages + " " + "pages, " + this.readstatus;
 }
 
+//function for pushing a book into library.
 function addBook(book) {
     myLibrary.push(book);
 }
@@ -77,6 +78,8 @@ function displayBooks() {
     }
 
 }
+
+//creating function to have the new book form appear.
 let fTitle;
 let fAuthor;
 let fPages;
@@ -118,7 +121,7 @@ function form() {
     })
 }
 
-
+//initial page load.
 displayBooks();
 newBookButton.addEventListener('click', function () {
     form();
