@@ -17,7 +17,7 @@ Book.prototype.info = function () {
     return this.title + ' by ' + this.author + "," + this.pages + " " + "pages, " + this.readstatus;
 }
 
-//function for pushing a book into library.
+//function for pushing a book into library. test
 function addBook(book) {
     myLibrary.push(book);
 }
