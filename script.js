@@ -5,28 +5,29 @@ const newBookButton = document.querySelector('.newBook');
 const sButton = document.createElement('button');
 sButton.textContent = "Submit Book";
 
-// Constructor for the book Object.
-function Book(title, author, pages, readstatus) {
+class book{
+constructor(title, author, pages, readstatus) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readstatus = readstatus;
-
 }
-Book.prototype.info = function () {
+
+info() {
     return this.title + ' by ' + this.author + "," + this.pages + " " + "pages, " + this.readstatus;
 }
 
+};
 //function for pushing a book into library. test
 function addBook(book) {
     myLibrary.push(book);
 }
 
 //place holders for library;
-let book1 = new Book("The cat in the hat", "Dr.Suess", "25", "read");
-let book2 = new Book("Dune", "Frank Herbert", " 688", "read");
-let book3 = new Book("The hobbit", "J.R.R. Tolkien", " 295", "not yet read");
-let book4 = new Book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "not yet read");
+let book1 = new book("The cat in the hat", "Dr.Suess", "25", "read");
+let book2 = new book("Dune", "Frank Herbert", " 688", "read");
+let book3 = new book("The hobbit", "J.R.R. Tolkien", " 295", "not yet read");
+let book4 = new book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "not yet read");
 addBook(book1);
 addBook(book2);
 addBook(book3);
