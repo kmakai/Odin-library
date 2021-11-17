@@ -18,7 +18,7 @@ info() {
 }
 
 };
-//function for pushing a book into library. test
+//function for pushing a book into library.
 function addBook(book) {
     myLibrary.push(book);
 }
