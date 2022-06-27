@@ -1,132 +1,100 @@
-// Declaration of global variables. and the library array.
-let myLibrary = [];
-const libCont = document.querySelector('.libContainer');
-const newBookButton = document.querySelector('.newBook');
-const sButton = document.createElement('button');
-sButton.textContent = "Submit Book";
+//========================================== REFACTOR ===========================================//
+const libContainer = document.querySelector(".libContainer");
 
-class book{
-constructor(title, author, pages, readstatus) {
+// const div = document.createElement("div");
+
+class library {
+  constructor() {
+    this.books = [];
+  }
+
+  addBook(book) {
+    this.books.push(book);
+  }
+
+  displayBooks() {
+    // libContainer.innerHTML = "";
+    for (const [ind, book] of this.books.entries()) {
+      // create book card
+      const div = document.createElement("div");
+      div.className = "book-card";
+      div.innerHTML = `
+           <h2 class="title">${book.title}</h2>
+            <p class="author">By: ${book.author}</p>
+            <p class="pages">Pages: ${book.pages}</p>
+            <span class="status">${book.status}</span>
+          `;
+
+      // add button to delete book.
+      const delBookBtn = document.createElement("button");
+      delBookBtn.innerText = "Remove";
+      delBookBtn.className = "delBtn";
+      div.append(delBookBtn);
+
+      delBookBtn.addEventListener("click", () => {
+        this.books.splice(ind, 1);
+
+        libContainer.innerHTML = "";
+        this.displayBooks();
+        console.log(this.books);
+      });
+
+      // add read status button
+      const statusBtn = document.createElement("button");
+      statusBtn.innerText = "change status";
+      statusBtn.className = "status-btn";
+      div.append(statusBtn);
+
+      statusBtn.addEventListener("click", () => {
+        if (this.books[ind].status === "finished") {
+          this.books[ind].status = "unfinished";
+          libContainer.innerHTML = "";
+          this.displayBooks();
+        } else if (this.books[ind].status === "unfinished") {
+          this.books[ind].status = "finished";
+          libContainer.innerHTML = "";
+          this.displayBooks();
+        }
+        console.log(ind);
+      });
+
+      libContainer.prepend(div);
+    }
+  }
+}
+
+class book {
+  constructor(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.readstatus = readstatus;
+    this.status = status;
+  }
 }
 
-info() {
-    return this.title + ' by ' + this.author + "," + this.pages + " " + "pages, " + this.readstatus;
-}
+const keeper = new library();
 
-};
-//function for pushing a book into library.
-function addBook(book) {
-    myLibrary.push(book);
-}
+//place holders for library books;
+let book1 = new book("The cat in the hat", "Dr.Suess", "25", "finished");
+let book2 = new book("Dune", "Frank Herbert", " 688", "unfinished");
+let book3 = new book("The hobbit", "J.R.R. Tolkien", " 295", "unfinished");
+let book4 = new book(
+  "The Lord of The Rings",
+  "J.R.R. Tolkien",
+  " 1216",
+  "finished"
+);
+keeper.addBook(book1);
+keeper.addBook(book2);
+keeper.addBook(book3);
+keeper.addBook(book4);
 
-//place holders for library;
-let book1 = new book("The cat in the hat", "Dr.Suess", "25", "read");
-let book2 = new book("Dune", "Frank Herbert", " 688", "read");
-let book3 = new book("The hobbit", "J.R.R. Tolkien", " 295", "not yet read");
-let book4 = new book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "not yet read");
-addBook(book1);
-addBook(book2);
-addBook(book3);
-addBook(book4);
+keeper.addBook(
+  new book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "finished")
+);
+keeper.addBook(new book("The cat in the hat", "Dr.Suess", "25", "finished"));
+keeper.addBook(new book("Dune", "Frank Herbert", " 688", "unfinished"));
+keeper.addBook(new book("The hobbit", "J.R.R. Tolkien", " 295", "unfinished"));
 
-//function to display books in library as cards.
-function displayBooks() {
-    for (let i = 0; i < myLibrary.length; i++) {
-        let card = document.createElement('div');
-        let title = document.createElement("p");
-        let author = document.createElement("p");
-        let pages = document.createElement('p');
-        let status = document.createElement('p');
-        let rmButton = document.createElement('button');
-        rmButton.type = "button";
-        rmButton.textContent = "Remove";
-        title.textContent = `Title: ${myLibrary[i].title}`;
-        author.textContent = `Author: ${myLibrary[i].author}`;
-        pages.textContent = `Pages: ${myLibrary[i].pages}`;
-        status.textContent = `Read?: ${myLibrary[i].readstatus}`;
-        card.append(title);
-        card.append(author);
-        card.append(pages);
-        card.append(status);
-        card.append(rmButton);
-        libCont.append(card);
-        card.className = 'bookCard';
-        rmButton.addEventListener("click", function () {
-            const ind = i;
-            myLibrary.splice(ind, 1);
-            libCont.innerHTML = '';
-            displayBooks();
-        })
-        statButton = document.createElement("button");
-        statButton.type = "button";
-        statButton.textContent = "Change Status";
-        card.append(statButton);
-        statButton.addEventListener('click', function () {
-            if (myLibrary[i].readstatus === "read") {
-                myLibrary[i].readstatus = "not yet read"
-                libCont.innerHTML = '';
-                displayBooks();
-            } else {
-                myLibrary[i].readstatus = "read"
-                libCont.innerHTML = '';
-                displayBooks();
-            }
-        })
-    }
-
-}
-
-//creating function to have the new book form appear.
-let fTitle;
-let fAuthor;
-let fPages;
-let fRead;
-function form() {
-    const nForm = document.createElement('form');
-    nForm.className = "form";
-    const nTitleLabel = document.createElement('label');
-    nTitleLabel.textContent = "Title:";
-    fTitle = document.createElement('input');
-    const nAuthorLabel = document.createElement('label');
-    nAuthorLabel.textContent = "Author:";
-    fAuthor = document.createElement('input');
-    const nPagesLabel = document.createElement('label');
-    nPagesLabel.textContent = "Pages:"
-    fPages = document.createElement('input');
-    const nReadLabel = document.createElement('label');
-    nReadLabel.textContent = "Read or Not read?:";
-    fRead = document.createElement('input');
-    fRead.value = "Read";
-    nForm.append(nTitleLabel, fTitle);
-    nForm.append(nAuthorLabel, fAuthor);
-    nForm.append(nPagesLabel, fPages);
-    nForm.append(nReadLabel, fRead);
-
-    const sButton = document.createElement('button');
-    sButton.type = "button";
-    sButton.textContent = "Submit Book";
-    nForm.append(sButton);
-
-    document.body.insertBefore(nForm, libCont);
-
-    sButton.addEventListener('click', function () {
-        const nbook = new Book(fTitle.value, fAuthor.value, fPages.value, fRead.value);
-        addBook(nbook);
-        libCont.innerHTML = '';
-        displayBooks();
-        document.querySelector("form").remove();
-    })
-}
-
-//initial page load.
-displayBooks();
-newBookButton.addEventListener('click', function () {
-    form();
-
-})
-
-
+console.log(keeper);
+keeper.displayBooks();

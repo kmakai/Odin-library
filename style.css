@@ -1,44 +1,59 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    margin: 25px;
+html {
+  font-size: 62.5%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
 }
 
-.bookCard{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    border: 2px solid blue;
-    max-width: 300px;
-    margin: 25px 25px;
-    padding: 10px 10px;
+.libContainer {
+  display: grid;
+  gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+
+  position: relative;
+  padding: 4em;
+
+  border: 1px solid red;
+  height: 80%;
+  width: 80%;
 }
 
-form{
-    position: absolute;
-    background-color: powderblue;
-    border: 2px solid plum;
-    align-self: center;
-    justify-self: center;
-    display: flex;
-    flex-direction: column;
-    max-width: 250px;
-    margin: 25px;
+.form {
+  font-size: 1.8rem;
+  border: 1px solid #555;
+  display: none;
+  flex-direction: column;
+  gap: 1em;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-label{
-    font-size: 1.5em;
-    font-weight: bold;
+label {
+  display: flex;
+  flex-direction: column;
 }
 
-.libContainer{
-    display: flex;
-    flex-direction: column-reverse;
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+
+  box-shadow: 0px 2px 4px rgba(85, 85, 85, 0.47);
 }
