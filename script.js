@@ -1,5 +1,6 @@
 //========================================== REFACTOR ===========================================//
 const libContainer = document.querySelector(".libContainer");
+const form = document.querySelector(".form");
 
 // const div = document.createElement("div");
 
@@ -63,6 +64,8 @@ class library {
   }
 }
 
+const keeper = new library();
+
 class book {
   constructor(title, author, pages, status) {
     this.title = title;
@@ -72,7 +75,32 @@ class book {
   }
 }
 
-const keeper = new library();
+// addbook button
+const newbookbtn = document.querySelector(".newBook");
+const cover = document.querySelector(".cover");
+newbookbtn.addEventListener("click", () => {
+  form.classList.remove("hidden");
+  document.querySelector(".cover").classList.remove("hidden");
+});
+
+// book submition form
+const bookSubBtn = document.querySelector(".submit-btn");
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
+const readStatus = document.querySelector("#status");
+bookSubBtn.addEventListener("click", () => {
+  console.log(title.value, author.value, pages.value, readStatus.value);
+  keeper.addBook(
+    new book(title.value, author.value, pages.value, readStatus.value)
+  );
+  document.querySelector(".form").classList.add("hidden");
+  document.querySelector(".cover").classList.add("hidden");
+  libContainer.innerHTML = "";
+  keeper.displayBooks();
+});
+
+/// driver. ///
 
 //place holders for library books;
 let book1 = new book("The cat in the hat", "Dr.Suess", "25", "finished");

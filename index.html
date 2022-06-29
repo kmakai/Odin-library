@@ -11,19 +11,20 @@
   <body>
     <button class="newBook">Add Book</button>
     <div class="libContainer">
-      <div class="form">
+      <div class="form hidden">
         <label for="title">Title<input type="text" id="title" /></label>
         <label for="author">Author<input type="text" id="author" /></label>
         <label for="title">Pages<input type="number" id="pages" /></label>
         <label for="title"
           >Status<select name="status" id="status">
             <option value="none"></option>
-            <option value="read">finished</option>
-            <option value="read">unfinished</option>
+            <option value="finished">finished</option>
+            <option value="unfinished">unfinished</option>
           </select></label
         >
-        <button>Submit</button>
+        <button class="submit-btn">Submit</button>
       </div>
     </div>
+    <div class="cover hidden"></div>
   </body>
 </html>
