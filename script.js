@@ -103,19 +103,12 @@ bookSubBtn.addEventListener("click", () => {
 /// driver. ///
 
 //place holders for library books;
-let book1 = new book("The cat in the hat", "Dr.Suess", "25", "finished");
-let book2 = new book("Dune", "Frank Herbert", " 688", "unfinished");
-let book3 = new book("The hobbit", "J.R.R. Tolkien", " 295", "unfinished");
-let book4 = new book(
-  "The Lord of The Rings",
-  "J.R.R. Tolkien",
-  " 1216",
-  "finished"
+keeper.addBook(
+  new book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "finished")
 );
-keeper.addBook(book1);
-keeper.addBook(book2);
-keeper.addBook(book3);
-keeper.addBook(book4);
+keeper.addBook(new book("The cat in the hat", "Dr.Suess", "25", "finished"));
+keeper.addBook(new book("Dune", "Frank Herbert", " 688", "unfinished"));
+keeper.addBook(new book("The hobbit", "J.R.R. Tolkien", " 295", "unfinished"));
 
 keeper.addBook(
   new book("The Lord of The Rings", "J.R.R. Tolkien", " 1216", "finished")
