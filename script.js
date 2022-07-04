@@ -1,6 +1,8 @@
 //========================================== REFACTOR ===========================================//
 const libContainer = document.querySelector(".libContainer");
 const form = document.querySelector(".form");
+const booksRead = document.querySelector(".read span");
+const booksNotRead = document.querySelector(".unread span");
 
 // const div = document.createElement("div");
 
@@ -14,6 +16,8 @@ class library {
   }
 
   displayBooks() {
+    let readbooks = 0;
+    let unreadbooks = 0;
     // libContainer.innerHTML = "";
     for (const [ind, book] of this.books.entries()) {
       // create book card
@@ -56,8 +60,17 @@ class library {
           libContainer.innerHTML = "";
           this.displayBooks();
         }
-        console.log(ind);
       });
+
+      // update stats UI
+
+      book.status === "finished" ? (readbooks += 1) : (unreadbooks += 1);
+
+      // reset stats UI
+      // booksRead.textContent = booksNotRead.textContent = "";
+
+      booksRead.textContent = readbooks;
+      booksNotRead.textContent = unreadbooks;
 
       libContainer.prepend(div);
     }
@@ -77,10 +90,8 @@ class book {
 
 // addbook button
 const newbookbtn = document.querySelector(".newBook");
-const cover = document.querySelector(".cover");
 newbookbtn.addEventListener("click", () => {
-  form.classList.remove("hidden");
-  document.querySelector(".cover").classList.remove("hidden");
+  form.classList.toggle("hidden");
 });
 
 // book submition form
@@ -94,8 +105,7 @@ bookSubBtn.addEventListener("click", () => {
   keeper.addBook(
     new book(title.value, author.value, pages.value, readStatus.value)
   );
-  document.querySelector(".form").classList.add("hidden");
-  document.querySelector(".cover").classList.add("hidden");
+  form.classList.toggle("hidden");
   libContainer.innerHTML = "";
   keeper.displayBooks();
 });
