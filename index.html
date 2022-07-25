@@ -27,19 +27,23 @@
       <button class="newBook">Add Book</button>
     </div>
 
-    <div class="form hidden">
-      <label for="title">Title<input type="text" id="title" /></label>
-      <label for="author">Author<input type="text" id="author" /></label>
-      <label for="title">Pages<input type="number" id="pages" /></label>
+    <form class="form hidden" onsubmit="return false">
+      <label for="title">Title<input type="text" id="title" required /></label>
+      <label for="author"
+        >Author<input type="text" id="author" required
+      /></label>
       <label for="title"
-        >Status<select name="status" id="status">
-          <option value="none"></option>
+        >Pages<input type="number" id="pages" required
+      /></label>
+      <label for="title"
+        >Status<select name="status" id="status" required>
+          <option value="none">please select</option>
           <option value="finished">finished</option>
           <option value="unfinished">unfinished</option>
         </select></label
       >
-      <button class="submit-btn">Submit</button>
-    </div>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
 
     <div class="libContainer"></div>
   </body>

@@ -130,6 +130,19 @@ label {
 
   border: 2px solid #ced4da;
 }
+#title:invalid,
+#author:invalid,
+#pages:invalid,
+#status:invalid {
+  outline: 1px dotted red;
+}
+
+#title:focus:invalid,
+#author:focus:invalid,
+#pages:focus:invalid,
+#status:focus:invalid {
+  outline: 2px dotted red;
+}
 
 #title:focus,
 #author:focus,
